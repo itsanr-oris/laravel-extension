@@ -1,9 +1,8 @@
 # Laravel extension
 
-[![Latest Stable Version](https://poser.pugx.org/f-oris/laravel-extension/v/stable.svg)](https://packagist.org/packages/f-oris/laravel-extension) 
-[![Latest Unstable Version](https://poser.pugx.org/f-oris/laravel-extension/v/unstable.svg)](https://packagist.org/packages/f-oris/laravel-extension)
-[![Total Downloads](https://poser.pugx.org/f-oris/laravel-extension/downloads)](https://packagist.org/packages/f-oris/laravel-extension) 
-[![License](https://poser.pugx.org/f-oris/laravel-extension/license)](https://packagist.org/packages/f-oris/laravel-extension) 
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Total Downloads][ico-downloads]][link-downloads]
+[![Software License][ico-license]](LICENSE)
 
 ## 简介
 
@@ -297,3 +296,18 @@ $ curl -X PUT http://lacalhost/api/resource/1/disable
 MIT License
 
 Copyright (c) 2019-present F.oris <us@f-oris.me>
+
+[ico-version]: https://img.shields.io/packagist/v/f-oris/laravel-extension.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/f-oris/laravel-extension/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/f-oris/laravel-extension.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/f-oris/laravel-extension.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/f-oris/laravel-extension.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/f-oris/laravel-extension
+[link-travis]: https://travis-ci.org/f-oris/laravel-extension
+[link-scrutinizer]: https://scrutinizer-ci.com/g/f-oris/laravel-extension/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/f-oris/laravel-extension
+[link-downloads]: https://packagist.org/packages/f-oris/laravel-extension
+[link-author]: https://github.com/barryvdh
+[link-contributors]: ../../contributors

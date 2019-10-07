@@ -1,8 +1,9 @@
 # Laravel extension
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE)
-[![Total Downloads][ico-downloads]][link-downloads]
+[![Latest Stable Version](https://poser.pugx.org/f-oris/laravel-extension/v/stable.svg)](https://packagist.org/packages/f-oris/laravel-extension) 
+[![Latest Unstable Version](https://poser.pugx.org/f-oris/laravel-extension/v/unstable.svg)](https://packagist.org/packages/f-oris/laravel-extension)
+[![Total Downloads](https://poser.pugx.org/f-oris/laravel-extension/downloads)](https://packagist.org/packages/f-oris/laravel-extension) 
+[![License](https://poser.pugx.org/f-oris/laravel-extension/license)](https://packagist.org/packages/f-oris/laravel-extension) 
 
 ## 简介
 

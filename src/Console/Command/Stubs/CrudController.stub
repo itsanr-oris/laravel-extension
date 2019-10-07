@@ -1,0 +1,37 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Http\Controllers\Controller;
+use Foris\LaExtension\Traits\Controllers\ExtResponse;
+use NamespacedDummyService;
+use Foris\LaExtension\Services\CrudService;
+use Foris\LaExtension\Traits\Controllers\ResourceOperation;
+
+/**
+ * Class DummyClass
+ */
+class DummyClass extends Controller
+{
+    use ResourceOperation, ExtResponse;
+
+    /**
+     * 资源管理服务实例
+     *
+     * @var DummyService
+     */
+    protected $service;
+
+    /**
+     * 获取资源管理服务实例
+     *
+     * @return     CrudService|DummyService
+     */
+    public function service() : CrudService
+    {
+        if (!$this->service instanceof DummyService) {
+            $this->service = app(DummyService::name());
+        }
+        return $this->service;
+    }
+}

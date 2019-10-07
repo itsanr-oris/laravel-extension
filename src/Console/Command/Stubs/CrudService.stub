@@ -1,0 +1,34 @@
+<?php
+
+namespace DummyNamespace;
+
+use NamespacedDummyRepository;
+use Foris\LaExtension\Repositories\CrudRepository;
+use FullParentClass;
+
+/**
+ * Class DummyClass
+ */
+class DummyClass extends ParentClass
+{
+    /**
+     * 数据仓库实例
+     *
+     * @var DummyRepository
+     */
+    protected $repository;
+
+    /**
+     * 获取数据仓库实例
+     *
+     * @return     CrudRepository|DummyRepository
+     */
+    public function repository() : CrudRepository
+    {
+        if (!$this->repository instanceof DummyRepository) {
+            $this->repository = app(DummyRepository::name());
+        }
+
+        return $this->repository;
+    }
+}

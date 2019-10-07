@@ -1,0 +1,25 @@
+<?php
+
+namespace DummyNamespace;
+
+use Foris\LaExtension\Traits\FacadeAlias;
+use Illuminate\Support\Facades\Facade;
+use NamespacedDummyComponent as Component;
+
+/**
+ * Class component facade
+ */
+class DummyClass extends Facade
+{
+    use FacadeAlias;
+
+    /**
+     * Get component facade Accessor
+     *
+     * @return string
+     */
+    protected static function getFacadeAccessor()
+    {
+        return Component::name();
+    }
+}

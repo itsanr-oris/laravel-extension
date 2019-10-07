@@ -1,0 +1,35 @@
+{
+    "name": "f-oris/laravel-extension",
+    "description": "a simple laravel extension package",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "F.oris",
+            "email": "us@f-oris.me"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/framework": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Foris\\LaExtension\\": "src/"
+        }
+    },
+    "suggest": {
+        "laravel/framework": ">=5.7",
+        "barryvdh/laravel-ide-helper": "Laravel IDE Helper, generates correct PHPDocs for all Facade classes, to improve auto-completion."
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Foris\\LaExtension\\ServiceProvider"
+            ],
+            "aliases": {
+                "LaExtensionResponse": "Foris\\LaExtension\\Http\\Facade\\Response"
+            }
+        }
+    }
+}

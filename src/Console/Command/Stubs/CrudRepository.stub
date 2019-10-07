@@ -1,0 +1,39 @@
+<?php
+
+namespace DummyNamespace;
+
+use NamespacedDummyModel;
+use Illuminate\Database\Eloquent\Model;
+use FullParentClass;
+
+/**
+ * Class DummyClass
+ */
+class DummyClass extends ParentClass
+{
+    /**
+     * 数据模型实例
+     *
+     * @var DummyModel
+     */
+    protected $model;
+
+    /**
+     * 获取仓库crud操作对应的model实例
+     *
+     * @param bool $newInstance
+     * @return     Model|DummyModel  仓库crud操作对应的model实例
+     */
+    public function model($newInstance = false) : Model
+    {
+        if ($newInstance) {
+            return new DummyModel();
+        }
+
+        if (!$this->model instanceof DummyModel) {
+            $this->model = new DummyModel();
+        }
+
+        return $this->model;
+    }
+}

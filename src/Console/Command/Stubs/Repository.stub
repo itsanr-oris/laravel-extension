@@ -1,0 +1,13 @@
+<?php
+
+namespace DummyNamespace;
+
+use FullParentClass;
+
+/**
+ * Class DummyClass
+ */
+class DummyClass extends ParentClass
+{
+
+}

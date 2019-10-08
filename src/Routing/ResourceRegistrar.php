@@ -34,10 +34,14 @@ class ResourceRegistrar extends \Illuminate\Routing\ResourceRegistrar
     protected function handleResourceRouterOptions($name, array $options = [])
     {
         $config = config('app-ext.resource_route.default', []);
-        $parameters = $options['parameters'] ?? [];
-        $nameArr = explode('/', $name);
-        $resource = end($nameArr);
-        $resourceName = empty($parameters[$resource]) ? $resource : $parameters[$resource];
+
+        $resourceName = $options['resource_name'] ?? '';
+        if (empty($resourceName)) {
+            $parameters   = $options['parameters'] ?? [];
+            $nameArr      = explode('/', $name);
+            $resource     = end($nameArr);
+            $resourceName = empty($parameters[$resource]) ? $resource : $parameters[$resource];
+        }
 
         $options['names'] = $options['names'] ?? [];
         foreach ($config as $method => $routeName) {

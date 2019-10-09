@@ -1,8 +1,9 @@
 # Laravel extension
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
-[![Software License][ico-license]](LICENSE)
+[![Latest Stable Version](https://poser.pugx.org/f-oris/laravel-extension/v/stable)](https://packagist.org/packages/f-oris/laravel-extension)
+[![Latest Unstable Version](https://poser.pugx.org/f-oris/laravel-extension/v/unstable)](https://packagist.org/packages/f-oris/laravel-extension)
+[![Total Downloads](https://poser.pugx.org/f-oris/laravel-extension/downloads)](https://packagist.org/packages/f-oris/laravel-extension)
+[![License](https://poser.pugx.org/f-oris/laravel-extension/license)](LICENSE)
 
 ## 简介
 
@@ -26,6 +27,17 @@ publish扩展包配置文件
 
 ```sh
 $ php artisan vendor:publish --provider="Foris\LaExtension\ServiceProvider"
+```
+
+打开bootstrap/app.php文件，添加路由注册代码
+
+```php
+<?php
+//...
+
+$app->singleton('router', \Foris\LaExtension\Routing\Router::class);
+
+return $app;
 ```
 
 ## 使用教程
@@ -245,14 +257,6 @@ return [
 ];
 ```
 
-打开api路由文件，修改路由
-
-```php
-<?php
-//...
-Route::apiResource('resource', 'ResourceController', ['with_extra' => true]);
-```
-
 执行创建资源请求，创建一个资源信息
 
 ```sh
@@ -296,18 +300,3 @@ $ curl -X PUT http://lacalhost/api/resource/1/disable
 MIT License
 
 Copyright (c) 2019-present F.oris <us@f-oris.me>
-
-[ico-version]: https://img.shields.io/packagist/v/f-oris/laravel-extension.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/f-oris/laravel-extension/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/f-oris/laravel-extension.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/f-oris/laravel-extension.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/f-oris/laravel-extension.svg?style=flat-square
-
-[link-packagist]: https://packagist.org/packages/f-oris/laravel-extension
-[link-travis]: https://travis-ci.org/f-oris/laravel-extension
-[link-scrutinizer]: https://scrutinizer-ci.com/g/f-oris/laravel-extension/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/f-oris/laravel-extension
-[link-downloads]: https://packagist.org/packages/f-oris/laravel-extension
-[link-author]: https://github.com/barryvdh
-[link-contributors]: ../../contributors

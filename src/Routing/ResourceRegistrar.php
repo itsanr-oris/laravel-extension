@@ -17,10 +17,7 @@ class ResourceRegistrar extends \Illuminate\Routing\ResourceRegistrar
      */
     public function register($name, $controller, array $options = [])
     {
-        if (!empty($options['with_extra'])) {
-            $this->registerExtraResourceRoute($name, $controller, $options);
-        }
-
+        $this->registerExtraResourceRoute($name, $controller, $options);
         parent::register($name, $controller, $this->handleResourceRouterOptions($name, $options));
     }
 

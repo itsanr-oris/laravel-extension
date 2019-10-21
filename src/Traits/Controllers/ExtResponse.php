@@ -1,8 +1,6 @@
-<?php /** @noinspection PhpUndefinedClassInspection */
+<?php
 
 namespace Foris\LaExtension\Traits\Controllers;
-
-use Foris\LaExtension\Http\Response;
 
 /**
  * Trait ExtResponse
@@ -12,7 +10,7 @@ trait ExtResponse
     /**
      * 获取response实例
      *
-     * @return OriginResponse|\Illuminate\Foundation\Application|mixed
+     * @return \Illuminate\Foundation\Application|mixed
      */
     public function response()
     {
@@ -31,7 +29,7 @@ trait ExtResponse
     public function success(
         $data = [],
         $message = 'success',
-        $code = Response::CODE_SUCCESS,
+        $code = null,
         $options = []
     ) {
         return $this->response()->success($data, $message, $code, $options);
@@ -49,7 +47,7 @@ trait ExtResponse
     public function failure(
         $message = 'failure',
         $data = [],
-        $code = Response::CODE_FAILURE,
+        $code = null,
         $options = []
     ) {
         return $this->response()->failure($message, $data, $code, $options);
@@ -67,7 +65,7 @@ trait ExtResponse
     public function forbidden(
         $message = 'forbidden',
         $data = [],
-        $code = Response::CODE_FAILURE,
+        $code = null,
         $options = []
     ) {
         return $this->response()->forbidden($message, $data, $code, $options);
@@ -85,7 +83,7 @@ trait ExtResponse
     public function unauthorized(
         $message = 'unauthorized',
         $data = [],
-        $code = Response::CODE_FAILURE,
+        $code = null,
         $options = []
     ) {
         return $this->response()->unauthorized($message, $data, $code, $options);
@@ -103,7 +101,7 @@ trait ExtResponse
     public function exception(
         $message = 'exception',
         $data = [],
-        $code = Response::CODE_FAILURE,
+        $code = null,
         $options = []
     ) {
         return $this->response()->exception($message, $data, $code, $options);
@@ -121,7 +119,7 @@ trait ExtResponse
     public function notFound(
         $message = '404 not found',
         $data = [],
-        $code = Response::CODE_FAILURE,
+        $code = null,
         $options = []
     ) {
         return $this->response()->notFound($message, $data, $code, $options);

@@ -12,11 +12,18 @@ use Illuminate\Support\Str;
 trait ColumnTranslate
 {
     /**
-     * 获取所有属性信息
+     * Get all of the current attributes on the model.
      *
      * @return array
      */
     abstract public function getAttributes();
+
+    /**
+     * Get all of the appendable values that are arrayable.
+     *
+     * @return array
+     */
+    abstract public function getArrayableAppends();
 
     /**
      * Append attributes to query when building a query.
@@ -42,8 +49,16 @@ trait ColumnTranslate
     public function getColumnTranslatesAttribute()
     {
         $translates = [];
+        $attributes = $this->getAttributes();
+        $appends = $this->getArrayableAppends();
 
-        foreach ($this->getAttributes() as $key => $value) {
+        foreach ($appends as $column) {
+            if (!array_key_exists($column, $attributes)) {
+                $attributes[$column] = null;
+            }
+        }
+
+        foreach ($attributes as $key => $value) {
             $method = Str::camel($key) . 'Translate';
             if (method_exists($this, $method)) {
                 $translates[$key] = $this->{$method}($value);

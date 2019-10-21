@@ -2,20 +2,28 @@
 
 namespace Foris\LaExtension\Exceptions;
 
-use Foris\LaExtension\Http\Facade\Response;
-
 /**
  * Class BusinessException
  */
 class BusinessException extends BaseException
 {
     /**
-     * 构建异常响应结果
+     * 获取默认调用的Response方法
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return string
      */
-    public function render()
+    protected function getDefaultResponseMethod()
     {
-        return Response::failure($this->getMessage(), $this->getData(), $this->getCode());
+        return 'failure';
+    }
+
+    /**
+     * 获取默认响应的状态码
+     *
+     * @return \Illuminate\Config\Repository|mixed
+     */
+    protected function getDefaultResponseCode()
+    {
+        return config('app-ext.api_response_code.failure', \Foris\LaExtension\Http\Response::CODE_FAILURE);
     }
 }

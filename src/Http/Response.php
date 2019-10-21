@@ -61,11 +61,12 @@ class Response
      * @param array  $options
      */
     public function __construct(
-        $code = self::CODE_SUCCESS,
+        $code = null,
         $message = '',
         $data = [],
         $options = []
     ) {
+        $code = $code ?? config('app-ext.api_response_code.success', self::CODE_SUCCESS);
         $this->setCode($code)->setMessage($message)->setData($data)->setOptions($options);
     }
 
@@ -75,7 +76,7 @@ class Response
      * @param int $code
      * @return $this
      */
-    public function setCode($code = self::CODE_SUCCESS)
+    public function setCode($code)
     {
         $this->code = $code;
         return $this;
@@ -214,9 +215,10 @@ class Response
     public static function success(
         $data = [],
         $message = 'success',
-        $code = self::CODE_SUCCESS,
+        $code = null,
         $options = []
     ) {
+        $code = $code ?? config('app-ext.api_response_code.success', self::CODE_SUCCESS);
         return (new static($code, $message, $data, $options))->toLaResponse();
     }
 
@@ -232,9 +234,10 @@ class Response
     public static function failure(
         $message = 'failure',
         $data = [],
-        $code = self::CODE_FAILURE,
+        $code = null,
         $options = []
     ) {
+        $code = $code ?? config('app-ext.api_response_code.failure', self::CODE_FAILURE);
         return (new static($code, $message, $data, $options))->toLaResponse();
     }
 
@@ -250,10 +253,11 @@ class Response
     public static function forbidden(
         $message = 'forbidden',
         $data = [],
-        $code = self::CODE_FAILURE,
+        $code = null,
         $options = []
     ) {
         $options = array_merge(['http_status' => FoundationResponse::HTTP_FORBIDDEN], $options);
+        $code = $code ?? config('app-ext.api_response_code.forbidden', FoundationResponse::HTTP_FORBIDDEN);
         return (new static($code, $message, $data, $options))->toLaResponse();
     }
 
@@ -269,10 +273,11 @@ class Response
     public static function unauthorized(
         $message = 'unauthorized',
         $data = [],
-        $code = self::CODE_FAILURE,
+        $code = null,
         $options = []
     ) {
         $options = array_merge(['http_status' => FoundationResponse::HTTP_UNAUTHORIZED], $options);
+        $code = $code ?? config('app-ext.api_response_code.unauthorized', FoundationResponse::HTTP_UNAUTHORIZED);
         return (new static($code, $message, $data, $options))->toLaResponse();
     }
 
@@ -288,10 +293,11 @@ class Response
     public static function exception(
         $message = 'exception',
         $data = [],
-        $code = self::CODE_FAILURE,
+        $code = null,
         $options = []
     ) {
         $options = array_merge(['http_status' => FoundationResponse::HTTP_INTERNAL_SERVER_ERROR], $options);
+        $code = $code ?? config('app-ext.api_response_code.exception', FoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
         return (new static($code, $message, $data, $options))->toLaResponse();
     }
 
@@ -307,10 +313,11 @@ class Response
     public static function notFound(
         $message = '404 not found',
         $data = [],
-        $code = self::CODE_FAILURE,
+        $code = null,
         $options = []
     ) {
         $options = array_merge(['http_status' => FoundationResponse::HTTP_NOT_FOUND], $options);
+        $code = $code ?? config('app-ext.api_response_code.notFound', FoundationResponse::HTTP_NOT_FOUND);
         return (new static($code, $message, $data, $options))->toLaResponse();
     }
 }

@@ -5,6 +5,7 @@ namespace Foris\LaExtension\Exceptions;
 use Throwable;
 use Illuminate\Support\Facades\Log;
 use Foris\LaExtension\Http\Facade\Response;
+use Symfony\Component\HttpFoundation\Response as FoundationResponse;
 
 /**
  * Class Exception
@@ -12,6 +13,8 @@ use Foris\LaExtension\Http\Facade\Response;
 class BaseException extends \Exception
 {
     /**
+     * 异常携带数据
+     *
      * @var array
      */
     protected $data = [];
@@ -25,7 +28,7 @@ class BaseException extends \Exception
      */
     public function __construct(
         string $message = "",
-        int $code = 1,
+        int $code = null,
         Throwable $previous = null,
         $data = []
     ) {
@@ -56,13 +59,36 @@ class BaseException extends \Exception
     }
 
     /**
+     * 获取默认调用的响应方法
+     *
+     * @return string
+     */
+    protected function getDefaultResponseMethod()
+    {
+        return 'exception';
+    }
+
+    /**
+     * 获取默认响应状态码
+     *
+     * @return \Illuminate\Config\Repository|mixed
+     */
+    protected function getDefaultResponseCode()
+    {
+        return config('app-ext.api_response_code.exception', FoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
+    }
+
+    /**
      * 异常信息转换为请求响应结果
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function render()
     {
-        return Response::exception($this->getMessage(), $this->getData(), $this->getCode());
+        $code = $this->getDefaultResponseCode();
+        $method = $this->getDefaultResponseMethod();
+
+        return Response::$method($this->getMessage(), $this->getData(), $code);
     }
 
     /**

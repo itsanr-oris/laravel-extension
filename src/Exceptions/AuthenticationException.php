@@ -2,7 +2,6 @@
 
 namespace Foris\LaExtension\Exceptions;
 
-use Throwable;
 use Symfony\Component\HttpFoundation\Response as FoundationResponse;
 
 /**
@@ -11,31 +10,22 @@ use Symfony\Component\HttpFoundation\Response as FoundationResponse;
 class AuthenticationException extends BaseException
 {
     /**
-     * AuthenticationException constructor.
+     * 获取默认调用的Response方法
      *
-     * @param string         $message
-     * @param int            $code
-     * @param null|Throwable $previous
-     * @param array          $data
+     * @return string
      */
-    public function __construct(
-        string $message = "",
-        int $code = FoundationResponse::HTTP_UNAUTHORIZED,
-        Throwable $previous = null,
-        array $data = []
-    ) {
-        parent::__construct($message, $code, $previous, $data);
+    protected function getDefaultResponseMethod()
+    {
+        return 'unauthorized';
     }
 
     /**
-     * 认证失败异常返回
+     * 获取默认响应的状态码
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Config\Repository|mixed
      */
-    public function render()
+    protected function getDefaultResponseCode()
     {
-        $response = parent::render();
-        $response->setStatusCode(FoundationResponse::HTTP_UNAUTHORIZED);
-        return $response;
+        return config('app-ext.api_response_code.unauthorized', FoundationResponse::HTTP_UNAUTHORIZED);
     }
 }

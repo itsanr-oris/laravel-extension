@@ -138,4 +138,44 @@ return [
             */
         ]
     ],
+
+    /**
+     * 接口响应通用状态码
+     */
+    'api_response_code' => [
+        /**
+         * 响应成功状态码
+         */
+        'success' => \Foris\LaExtension\Http\Response::CODE_SUCCESS,
+
+        /**
+         * 响应失败状态码
+         */
+        'failure' => \Foris\LaExtension\Http\Response::CODE_FAILURE,
+
+        /**
+         * 用户未认证响应状态码
+         */
+        'unauthorized' => \Symfony\Component\HttpFoundation\Response::HTTP_UNAUTHORIZED,
+
+        /**
+         * 操作未授权响应状态码
+         */
+        'forbidden' => \Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN,
+
+        /**
+         * 资源不存在响应状态码
+         */
+        'notFound' => \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND,
+
+        /**
+         * 系统异常状态码
+         */
+        'exception' => \Symfony\Component\HttpFoundation\Response::HTTP_INTERNAL_SERVER_ERROR,
+
+        /**
+         * 参数校验不通过状态码
+         */
+        'paramsValidException' => \Symfony\Component\HttpFoundation\Response::HTTP_UNPROCESSABLE_ENTITY,
+    ]
 ];

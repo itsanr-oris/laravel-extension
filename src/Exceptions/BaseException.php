@@ -55,6 +55,17 @@ class BaseException extends \Exception
      */
     public function getData()
     {
+        if (env('APP_DEBUG') == true) {
+            $data = [
+                'code' => $this->getCode(),
+                'message' => $this->getMessage(),
+                'file' => $this->getFile(),
+                'line' => $this->getLine(),
+                'trace' => explode("\n", $this->getTraceAsString())
+            ];
+            $this->data = array_merge($this->data, ['exception' => $data]);
+        }
+
         return $this->data;
     }
 
@@ -106,7 +117,8 @@ class BaseException extends \Exception
                 'url' => request()->url(),
                 'input' => request()->input(),
                 'ip' => request()->getClientIp(),
-            ]
+            ],
+            'exception' => $this,
         ];
 
         Log::error($this->getMessage(), $context);

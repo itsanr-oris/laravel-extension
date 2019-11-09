@@ -96,10 +96,11 @@ class BaseException extends \Exception
      */
     public function render()
     {
-        $code = $this->getDefaultResponseCode();
+        $code = $this->getCode() ?? $this->getDefaultResponseCode();
         $method = $this->getDefaultResponseMethod();
+        $message = env('APP_DEBUG', false) ? $this->getMessage() : '系统正在开小差，请稍后重新尝试哦~';
 
-        return Response::$method($this->getMessage(), $this->getData(), $code);
+        return Response::$method($message, $this->getData(), $code);
     }
 
     /**

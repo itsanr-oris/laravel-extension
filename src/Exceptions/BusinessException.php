@@ -2,6 +2,8 @@
 
 namespace Foris\LaExtension\Exceptions;
 
+use Foris\LaExtension\Http\Facade\Response;
+
 /**
  * Class BusinessException
  */
@@ -25,5 +27,28 @@ class BusinessException extends BaseException
     protected function getDefaultResponseCode()
     {
         return config('app-ext.api_response_code.failure', \Foris\LaExtension\Http\Response::CODE_FAILURE);
+    }
+
+    /**
+     * 请求响应数据
+     *
+     * @return array
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * 异常信息转换为请求响应结果
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function render()
+    {
+        $code = $this->getCode() ?? $this->getDefaultResponseCode();
+        $method = $this->getDefaultResponseMethod();
+
+        return Response::$method($this->getMessage() , $this->getData(), $code);
     }
 }

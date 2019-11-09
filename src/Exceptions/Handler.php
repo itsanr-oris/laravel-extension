@@ -70,6 +70,6 @@ class Handler extends BaseExceptionHandler
         }
 
         // 对于不是BaseException的，封装成BaseException，避免错误信息暴露
-        return (new ErrorException($exception->getMessage(), 1, $exception))->render();
+        return (new ErrorException($exception->getMessage(), $exception->getCode(), $exception))->render();
     }
 }

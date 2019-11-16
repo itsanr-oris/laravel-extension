@@ -23,7 +23,7 @@ trait StatusOperation
     /**
      * 查询实例
      *
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     abstract public function query();
 

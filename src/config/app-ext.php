@@ -177,5 +177,10 @@ return [
          * 参数校验不通过状态码
          */
         'paramsValidException' => \Symfony\Component\HttpFoundation\Response::HTTP_UNPROCESSABLE_ENTITY,
-    ]
+    ],
+
+    /**
+     * 是否自动加载model字段翻译功能
+     */
+    'initialize_model_column_translate' => true,
 ];

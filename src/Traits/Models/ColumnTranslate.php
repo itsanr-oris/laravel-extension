@@ -12,6 +12,13 @@ use Illuminate\Support\Str;
 trait ColumnTranslate
 {
     /**
+     * Translate attributes
+     *
+     * @var array
+     */
+    protected $translateColumn = [];
+
+    /**
      * Get all of the current attributes on the model.
      *
      * @return array
@@ -34,15 +41,17 @@ trait ColumnTranslate
     abstract public function append($attributes);
 
     /**
-     * 初始化，添加column_translates字段
+     * Append column_translates attribute while initialize
      */
     public function initializeColumnTranslate()
     {
-        $this->append('column_translates');
+        if (config('app-ext.initialize_model_column_translate', true)) {
+            $this->append('column_translates');
+        }
     }
 
     /**
-     * 获取字段标签翻译
+     * Get column_translate attribute
      *
      * @return array
      */
@@ -59,6 +68,11 @@ trait ColumnTranslate
         }
 
         foreach ($attributes as $key => $value) {
+            if (!empty($this->translateColumn)
+                && !in_array($key, $this->translateColumn)) {
+                continue;
+            }
+
             $method = Str::camel($key) . 'Translate';
             if (method_exists($this, $method)) {
                 $translates[$key] = $this->{$method}($value);
@@ -66,5 +80,18 @@ trait ColumnTranslate
         }
 
         return $translates;
+    }
+
+    /**
+     * Append column_translates attribute
+     *
+     * @param array $attributes
+     * @return $this
+     */
+    public function withTranslate($attributes = [])
+    {
+        $this->translateColumn = $attributes;
+        $this->append('column_translates');
+        return $this;
     }
 }

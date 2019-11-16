@@ -12,6 +12,13 @@ use Illuminate\Support\Str;
 trait ColumnTranslate
 {
     /**
+     * Column translate attribute name
+     *
+     * @var string
+     */
+    protected $columnTranslatesAttributeName = 'column_translates';
+
+    /**
      * Translate attributes
      *
      * @var array
@@ -46,7 +53,7 @@ trait ColumnTranslate
     public function initializeColumnTranslate()
     {
         if (config('app-ext.initialize_model_column_translate', true)) {
-            $this->append('column_translates');
+            $this->append($this->columnTranslatesAttributeName);
         }
     }
 
@@ -57,6 +64,10 @@ trait ColumnTranslate
      */
     public function getColumnTranslatesAttribute()
     {
+        if (isset($this->attributes[$this->columnTranslatesAttributeName])) {
+            return $this->attributes[$this->columnTranslatesAttributeName];
+        }
+
         $translates = [];
         $attributes = $this->getAttributes();
         $appends = $this->getArrayableAppends();
@@ -91,7 +102,7 @@ trait ColumnTranslate
     public function withTranslate($attributes = [])
     {
         $this->translateColumn = $attributes;
-        $this->append('column_translates');
+        $this->append($this->columnTranslatesAttributeName);
         return $this;
     }
 }

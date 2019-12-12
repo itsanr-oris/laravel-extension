@@ -92,7 +92,7 @@ abstract class CrudRepository extends Repository
             return call_user_func_array([$this->model(), 'withTrashed'], []);
         }
 
-        return $this->model()->query();
+        return $this->model()->newQuery();
     }
 
     /**
@@ -103,6 +103,23 @@ abstract class CrudRepository extends Repository
     public function all()
     {
         return $this->query()->get();
+    }
+
+    /**
+     * 获取列表查询实例
+     *
+     * @param array $filter
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function listQuery(array $filter = [])
+    {
+        $query = $this->query();
+
+        if (!empty($filter['select'])) {
+            $query->select($filter['select']);
+        }
+
+        return $query->orderBy($this->model()->getKeyName(), 'desc');
     }
 
     /**
@@ -117,8 +134,7 @@ abstract class CrudRepository extends Repository
         $filter['page_index'] = $filter['page_index'] ?? 1;
         $filter['page_size'] = $filter['page_size'] ?? 20;
 
-        $query = $this->query();
-        $query->orderBy($this->model()->getKeyName(), 'desc');
+        $query = $this->listQuery($filter);
 
         if ($simplePaginate) {
             return $query->simplePaginate($filter['page_size'], ['*'], 'page_index', $filter['page_index']);

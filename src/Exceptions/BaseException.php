@@ -63,6 +63,11 @@ class BaseException extends \Exception
                 'line' => $this->getLine(),
                 'trace' => explode("\n", $this->getTraceAsString())
             ];
+
+            if (!empty($this->getPrevious())) {
+                $data['trace'] = explode("\n", $this->getPrevious()->getTraceAsString());
+            }
+
             $this->data = array_merge($this->data, ['exception' => $data]);
         }
 

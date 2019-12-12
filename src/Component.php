@@ -2,7 +2,6 @@
 
 namespace Foris\LaExtension;
 
-use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Facade;
 use ReflectionClass;
 

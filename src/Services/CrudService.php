@@ -3,6 +3,7 @@
 namespace Foris\LaExtension\Services;
 
 use Foris\LaExtension\Repositories\CrudRepository;
+use Illuminate\Support\Arr;
 
 /**
  * Class CrudService
@@ -47,19 +48,7 @@ abstract class CrudService extends Service
      */
     public function create(array $data)
     {
-        return $this->repository()->create($data);
-    }
-
-    /**
-     * 删除数据
-     *
-     * @param $id
-     * @return mixed
-     * @throws \Exception
-     */
-    public function delete($id)
-    {
-        return $this->repository()->delete($id);
+        return $this->save($data);
     }
 
     /**
@@ -71,7 +60,35 @@ abstract class CrudService extends Service
      */
     public function update($id, array $data)
     {
-        return $this->repository()->update($id, $data) ? $this->detail($id) : false;
+        $pk = $this->repository()->model()->getKeyName();
+        return $this->save(array_merge($data, [$pk => $id]));
+    }
+
+    /**
+     * 保存数据
+     *
+     * @param array $data
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object
+     */
+    public function save(array $data)
+    {
+        $pk = $this->repository()->model()->getKeyName();
+
+        return empty($data[$pk])
+            ? $this->repository()->create($data)
+            : $this->repository()->update($data[$pk], Arr::except($data, [$pk]));
+    }
+
+    /**
+     * 删除数据
+     *
+     * @param $id
+     * @return mixed
+     * @throws \Foris\LaExtension\Exceptions\ErrorException
+     */
+    public function delete($id)
+    {
+        return $this->repository()->delete($id);
     }
 
     /**

@@ -1,0 +1,14 @@
+<?php
+
+namespace Foris\LaExtension\Tests;
+
+/**
+ * Class ExceptionTest
+ */
+class ExceptionTest extends TestCase
+{
+    public function testRender()
+    {
+
+    }
+}

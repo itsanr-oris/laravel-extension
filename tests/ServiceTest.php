@@ -1,17 +1,16 @@
 <?php
 
-namespace Foris\LaExtension\Services\Tests;
+namespace Foris\LaExtension\Tests;
 
-use Foris\LaExtension\Tests\Mock\Stubs\Resource;
-use Foris\LaExtension\Tests\Mock\Stubs\ResourceService;
-use Foris\LaExtension\Tests\TestCase;
+use Foris\LaExtension\Tests\Stubs\Models\Resource;
+use Foris\LaExtension\Tests\Stubs\Services\ResourceService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Pagination\Paginator;
 
 /**
  * Class CrudServiceTest
  */
-class CrudServiceTest extends TestCase
+class ServiceTest extends TestCase
 {
     /**
      * Get resource service instance

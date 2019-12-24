@@ -17,7 +17,8 @@
         "phpunit/phpunit": "^8.1",
         "mockery/mockery": "^1.2",
         "fzaninotto/faker": "^1.8",
-        "orchestra/testbench": "^3.5"
+        "orchestra/testbench": "^3.5",
+        "mikey179/vfsstream": "^1.6"
     },
     "autoload": {
         "psr-4": {
@@ -26,7 +27,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Foris\\LaExtension\\Tests\\": "tests/"
+            "Foris\\LaExtension\\Tests\\": "tests"
         }
     },
     "suggest": {

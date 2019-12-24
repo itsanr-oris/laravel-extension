@@ -1,6 +1,6 @@
 <?php
 
-namespace Foris\LaExtension\Tests\Mock\Stubs;
+namespace Foris\LaExtension\Tests\Stubs\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Components\Facade;
+
+use Foris\LaExtension\Traits\FacadeAlias;
+use Illuminate\Support\Facades\Facade;
+
+/**
+ * Class Component
+ */
+class Component extends Facade
+{
+    use FacadeAlias;
+
+    protected static function getFacadeAccessor()
+    {
+        return \App\Components\Component::name();
+    }
+}

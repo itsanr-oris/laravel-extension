@@ -1,11 +1,12 @@
-<?php
+<?php /** @noinspection PhpIncludeInspection */
 
 namespace Foris\LaExtension\Tests;
 
 use Foris\LaExtension\ServiceProvider;
-use Foris\LaExtension\Tests\Mock\Stubs\Resource;
+use Foris\LaExtension\Tests\Stubs\Models\Resource;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Routing\Router;
+use org\bovigo\vfs\vfsStream;
 
 /**
  * Class TestCase
@@ -15,18 +16,88 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     use DatabaseMigrations;
 
     /**
-     * 获取ServiceProvider
+     * vfsStreamDirectory instance
+     *
+     * @var \org\bovigo\vfs\vfsStreamDirectory
+     */
+    protected $vfs;
+
+    /**
+     * Init vfs instance
+     *
+     * @return \org\bovigo\vfs\vfsStreamDirectory
+     */
+    protected function initVfs()
+    {
+        if (empty($this->vfs)) {
+            $base = vfsStream::setup('laravel');
+            $this->vfs = vfsStream::copyFromFileSystem(parent::getBasePath(), $base);
+
+            $componentStub = __DIR__ . '/Stubs/Components/Component.stub';
+            $facadeStub = __DIR__ . '/Stubs/Components/Facade/Component.stub';
+            $controllerStub = __DIR__ . '/Stubs/Controllers/Controller.stub';
+
+            $structure = [
+                'Components' => [
+                    'Component.php' => file_get_contents($componentStub),
+                    'Facade' => [
+                        'Component.php' => file_get_contents($facadeStub),
+                    ]
+                ],
+                'Http' => [
+                    'Controllers' => [
+                        'Controller.php' => file_get_contents($controllerStub)
+                    ]
+                ],
+            ];
+
+            vfsStream::create($structure, $this->vfs->getChild('app'));
+
+            require_once $this->vfs->url() . '/app/Components/Component.php';
+            require_once $this->vfs->url() . '/app/Components/Facade/Component.php';
+            require_once $this->vfs->url() . '/app/Http/Controllers/Controller.php';
+        }
+
+        return $this->vfs;
+    }
+
+    /**
+     * Get vfs instance
+     *
+     * @return \org\bovigo\vfs\vfsStreamDirectory
+     */
+    protected function vfs()
+    {
+        return empty($this->vfs) ? $this->initVfs() : $this->vfs;
+    }
+
+    /**
+     * Get application base path
+     *
+     * @return string
+     */
+    protected function getBasePath()
+    {
+        return $this->vfs()->url();
+    }
+
+    /**
+     * Get package providers
      *
      * @param \Illuminate\Foundation\Application $app
      * @return array
      */
     protected function getPackageProviders($app)
     {
+        # add custom app-ext config before package provider load
+        $config = require __DIR__ . '/Stubs/config/app-ext.php';
+        $app['config']->set('app-ext', array_merge($app['config']->get('app-ext', []), $config));
+
         return [ServiceProvider::class];
     }
 
     /**
-     * 注册router
+     * Register router
      *
      * @return \Illuminate\Foundation\Application
      */
@@ -38,33 +109,23 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     }
 
     /**
-     * 设置运行环境
+     * Get router instance
      *
-     * @param \Illuminate\Foundation\Application $app
+     * @return Router
      */
-    protected function getEnvironmentSetUp($app)
+    protected function getRouter()
     {
-        $router = $app['router'];
-        $this->addWebRoutes($router);
-        $this->addApiRoutes($router);
+        return $this->app['router'];
     }
 
     /**
-     * 添加web路由
+     * Get config instance
      *
-     * @param Router $router
+     * @return \Illuminate\Config\Repository
      */
-    protected function addWebRoutes($router)
+    protected function getConfig()
     {
-    }
-
-    /**
-     * 添加api路由
-     *
-     * @param $router
-     */
-    protected function addApiRoutes($router)
-    {
+        return $this->app['config'];
     }
 
     /**
@@ -73,7 +134,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->loadMigrationsFrom(realpath(__DIR__ . '/Mock/migrations'));
+        $this->loadMigrationsFrom(realpath(__DIR__ . '/Stubs/migrations'));
         Resource::query()->create(['name' => 'resource a', 'desc' => 'resource a desc']);
         Resource::query()->create(['name' => 'resource b', 'desc' => 'resource b desc']);
     }

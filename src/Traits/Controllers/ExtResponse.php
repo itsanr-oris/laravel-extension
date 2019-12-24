@@ -4,6 +4,8 @@ namespace Foris\LaExtension\Traits\Controllers;
 
 /**
  * Trait ExtResponse
+ *
+ * @codeCoverageIgnore
  */
 trait ExtResponse
 {

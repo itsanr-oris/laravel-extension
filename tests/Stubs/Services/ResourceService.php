@@ -1,9 +1,10 @@
 <?php
 
-namespace Foris\LaExtension\Tests\Mock\Stubs;
+namespace Foris\LaExtension\Tests\Stubs\Services;
 
 use Foris\LaExtension\Repositories\CrudRepository;
 use Foris\LaExtension\Services\CrudService;
+use Foris\LaExtension\Tests\Stubs\Repositories\ResourceRepository;
 
 /**
  * Class ResourceService

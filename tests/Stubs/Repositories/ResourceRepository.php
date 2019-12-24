@@ -1,8 +1,9 @@
 <?php
 
-namespace Foris\LaExtension\Tests\Mock\Stubs;
+namespace Foris\LaExtension\Tests\Stubs\Repositories;
 
 use Foris\LaExtension\Repositories\CrudRepository;
+use Foris\LaExtension\Tests\Stubs\Models\Resource;
 use Illuminate\Database\Eloquent\Model;
 
 /**

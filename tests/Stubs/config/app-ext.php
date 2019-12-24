@@ -38,12 +38,12 @@ return [
         /**
          * 组件名前缀
          */
-        'name_prefix' => '',
+        'name_prefix' => 'test',
 
         /**
          * 扫描目录，相对于app
          */
-        'scan_path' => ['Repositories', 'Services'],
+        'scan_path' => ['Repositories', 'Services', 'Components'],
 
         /**
          * 是否启用组件Facade别名
@@ -84,7 +84,6 @@ return [
          * 默认路由配置
          */
         'default' => [
-            /*
             'index' => '查看{resource_name}列表',
             'create' => '查看{resource_name}创建表单',
             'edit' => '查看{resource_name}编辑表单',
@@ -92,14 +91,12 @@ return [
             'show' => '查看{resource_name}详情',
             'update' => '更新{resource_name}信息',
             'destroy' => '删除{resource_name}信息',
-            */
         ],
 
         /**
          * 自定义资源通用路由
          */
         'extra' => [
-            /*
             'batchDestroy' => [
                 'method' => 'delete',
                 'route_suffix' => 'delete/batch',
@@ -135,7 +132,6 @@ return [
                 'route_suffix' => 'select_options',
                 'name' => '查看{resource_name}选项信息',
             ],
-            */
         ]
     ],
 

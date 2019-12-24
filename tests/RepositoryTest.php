@@ -1,11 +1,10 @@
 <?php
 
-namespace Foris\LaExtension\Repositories\Tests;
+namespace Foris\LaExtension\Tests;
 
 use Foris\LaExtension\Exceptions\ErrorException;
 use Foris\LaExtension\Repositories\CrudRepository;
-use Foris\LaExtension\Tests\Mock\Stubs\Resource;
-use Foris\LaExtension\Tests\TestCase;
+use Foris\LaExtension\Tests\Stubs\Models\Resource;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -14,7 +13,7 @@ use Mockery\Mock;
 /**
  * Class CrudRepositoryTest
  */
-class CrudRepositoryTest extends TestCase
+class RepositoryTest extends TestCase
 {
     /**
      * Get resource model instance

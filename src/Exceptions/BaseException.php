@@ -27,8 +27,8 @@ class BaseException extends \Exception
      * @param array          $data
      */
     public function __construct(
-        string $message = "",
-        int $code = null,
+        $message = "",
+        $code = null,
         Throwable $previous = null,
         $data = []
     ) {

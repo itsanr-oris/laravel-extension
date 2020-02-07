@@ -15,7 +15,7 @@ trait StatusOperation
      *
      * @return CrudRepository|RepositoryStatusOperation
      */
-    abstract public function repository() : CrudRepository;
+    abstract public function repository();
 
     /**
      * 启/禁用资源信息

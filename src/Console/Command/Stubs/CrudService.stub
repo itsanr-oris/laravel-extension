@@ -23,7 +23,7 @@ class DummyClass extends ParentClass
      *
      * @return     CrudRepository|DummyRepository
      */
-    public function repository() : CrudRepository
+    public function repository()
     {
         if (!$this->repository instanceof DummyRepository) {
             $this->repository = app(DummyRepository::name());

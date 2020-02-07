@@ -16,7 +16,7 @@ trait StatusOperation
      *
      * @return     CrudService|ServiceStatusOperation
      */
-    abstract public function service() : CrudService;
+    abstract public function service();
 
     /**
      * 启用资源信息

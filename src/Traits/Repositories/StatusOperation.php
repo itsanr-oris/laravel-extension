@@ -18,7 +18,7 @@ trait StatusOperation
      * @param bool $newInstance
      * @return Model|ModelStatusOperation
      */
-    abstract public function model($newInstance = false) : Model;
+    abstract public function model($newInstance = false);
 
     /**
      * 查询实例

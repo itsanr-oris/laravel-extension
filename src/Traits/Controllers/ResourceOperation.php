@@ -16,7 +16,7 @@ trait ResourceOperation
      *
      * @return CrudService
      */
-    abstract public function service() : CrudService;
+    abstract public function service();
 
     /**
      * 获取数据列表

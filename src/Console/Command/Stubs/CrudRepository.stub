@@ -24,7 +24,7 @@ class DummyClass extends ParentClass
      * @param bool $newInstance
      * @return     Model|DummyModel  仓库crud操作对应的model实例
      */
-    public function model($newInstance = false) : Model
+    public function model($newInstance = false)
     {
         if ($newInstance) {
             return new DummyModel();

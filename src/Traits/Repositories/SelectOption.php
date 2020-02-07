@@ -16,7 +16,7 @@ trait SelectOption
      * @param bool $newInstance
      * @return Model|ModelSelectOption
      */
-    abstract public function model($newInstance = false) : Model;
+    abstract public function model($newInstance = false);
 
     /**
      * 查询实例

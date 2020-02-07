@@ -15,7 +15,7 @@ trait SelectOption
      *
      * @return CrudRepository|RepositorySelectOption
      */
-    abstract public function repository() : CrudRepository;
+    abstract public function repository();
 
     /**
      * 获取资源选项信息

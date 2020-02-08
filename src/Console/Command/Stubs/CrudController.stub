@@ -29,7 +29,7 @@ class DummyClass extends Controller
      */
     public function service()
     {
-        if (!$this->service instanceof DummyService) {
+        if (!$this->service) {
             $this->service = app(DummyService::name());
         }
         return $this->service;

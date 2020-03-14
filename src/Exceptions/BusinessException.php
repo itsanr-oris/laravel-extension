@@ -46,7 +46,7 @@ class BusinessException extends BaseException
      */
     public function render()
     {
-        $code = $this->getCode() ?? $this->getDefaultResponseCode();
+        $code = empty($this->getCode()) ? $this->getDefaultResponseCode() : $this->getCode();
         $method = $this->getDefaultResponseMethod();
 
         return Response::$method($this->getMessage() , $this->getData(), $code);

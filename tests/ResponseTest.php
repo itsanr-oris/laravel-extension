@@ -12,6 +12,14 @@ use Symfony\Component\HttpFoundation\Response as FoundationResponse;
 class ResponseTest extends TestCase
 {
     /**
+     * Test get response instance
+     */
+    public function testGetResponseInstance()
+    {
+        $this->assertInstanceOf(Response::class, app('app-ext.response'));
+    }
+
+    /**
      * Test get success response
      */
     public function testSuccessResponse()

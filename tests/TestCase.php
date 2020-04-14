@@ -7,6 +7,8 @@ use Foris\LaExtension\Tests\Stubs\Models\Resource;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Routing\Router;
 use org\bovigo\vfs\vfsStream;
+use TiMacDonald\Log\LogFake;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class TestCase
@@ -33,16 +35,18 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
             $base = vfsStream::setup('laravel');
             $this->vfs = vfsStream::copyFromFileSystem(parent::getBasePath(), $base);
 
-            $componentStub = __DIR__ . '/Stubs/Components/Component.stub';
-            $facadeStub = __DIR__ . '/Stubs/Components/Facade/Component.stub';
+            $componentStub = __DIR__ . '/Stubs/Components/AutoRegisterComponent.stub';
+            $facadeStub = __DIR__ . '/Stubs/Components/Facade/AutoRegisterComponent.stub';
             $controllerStub = __DIR__ . '/Stubs/Controllers/Controller.stub';
 
             $structure = [
                 'Components' => [
-                    'Component.php' => file_get_contents($componentStub),
-                    'Facade' => [
-                        'Component.php' => file_get_contents($facadeStub),
-                    ]
+                    'Module' => [
+                        'AutoRegisterComponent.php' => file_get_contents($componentStub),
+                        'Facade' => [
+                            'AutoRegisterComponent.php' => file_get_contents($facadeStub),
+                        ]
+                    ],
                 ],
                 'Http' => [
                     'Controllers' => [
@@ -53,8 +57,8 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 
             vfsStream::create($structure, $this->vfs->getChild('app'));
 
-            require_once $this->vfs->url() . '/app/Components/Component.php';
-            require_once $this->vfs->url() . '/app/Components/Facade/Component.php';
+            require_once $this->vfs->url() . '/app/Components/Module/AutoRegisterComponent.php';
+            require_once $this->vfs->url() . '/app/Components/Module/Facade/AutoRegisterComponent.php';
             require_once $this->vfs->url() . '/app/Http/Controllers/Controller.php';
         }
 
@@ -137,5 +141,18 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         $this->loadMigrationsFrom(realpath(__DIR__ . '/Stubs/migrations'));
         Resource::query()->create(['name' => 'resource a', 'desc' => 'resource a desc']);
         Resource::query()->create(['name' => 'resource b', 'desc' => 'resource b desc']);
+
+        Log::swap(new LogFake());
+        putenv('APP_DEBUG=true');
+    }
+
+    /**
+     * 获取loger
+     *
+     * @return Log|LogFake
+     */
+    public function getLogger()
+    {
+        return Log::getFacadeRoot();
     }
 }

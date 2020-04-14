@@ -163,14 +163,9 @@ class CommandTest extends TestCase
 
         $this->assertFileExists($classPath);
         require_once $classPath;
-        $this->assertInstanceOf(Facade::class, new $class());
-    }
 
-    /**
-     * Test make component facade command
-     */
-    public function testMakeComponentFacadeCommand()
-    {
-        $this->assertTrue(true);
+        $instance = new $class();
+        $this->assertInstanceOf(Facade::class, $instance);
+        $this->assertEquals('test facade', call_user_func([$instance, 'getFacadeRoot']));
     }
 }

@@ -18,7 +18,8 @@
         "mockery/mockery": "^1.2",
         "fzaninotto/faker": "^1.8",
         "orchestra/testbench": "^3.5",
-        "mikey179/vfsstream": "^1.6"
+        "mikey179/vfsstream": "^1.6",
+        "timacdonald/log-fake": "^1.6"
     },
     "autoload": {
         "psr-4": {

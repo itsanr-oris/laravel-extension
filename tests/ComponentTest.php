@@ -12,8 +12,8 @@ class ComponentTest extends TestCase
      */
     public function testComponentDiscover()
     {
-        $class = 'App\Components\Component';
-        $facade = 'App\Components\Facade\Component';
+        $class = 'App\Components\Module\AutoRegisterComponent';
+        $facade = 'App\Components\Module\Facade\AutoRegisterComponent';
 
         $this->assertTrue(class_exists($class));
         $this->assertInstanceOf($class, app(call_user_func([$class, 'name'])));

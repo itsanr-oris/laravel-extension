@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components\Facade;
+namespace App\Components\Module\Facade;
 
 use Foris\LaExtension\Traits\FacadeAlias;
 use Illuminate\Support\Facades\Facade;
@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Facade;
 /**
  * Class Component
  */
-class Component extends Facade
+class AutoRegisterComponent extends Facade
 {
     use FacadeAlias;
 
     protected static function getFacadeAccessor()
     {
-        return \App\Components\Component::name();
+        return \App\Components\Module\AutoRegisterComponent::name();
     }
 }

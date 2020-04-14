@@ -27,9 +27,9 @@ class DummyClass extends Controller
      *
      * @return     CrudService|DummyService
      */
-    public function service() : CrudService
+    public function service()
     {
-        if (!$this->service instanceof DummyService) {
+        if (!$this->service) {
             $this->service = app(DummyService::name());
         }
         return $this->service;

@@ -15,7 +15,7 @@ abstract class CrudService extends Service
      *
      * @return CrudRepository
      */
-    abstract public function repository() : CrudRepository;
+    abstract public function repository();
 
     /**
      * 获取数据列表

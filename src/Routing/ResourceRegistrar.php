@@ -75,7 +75,8 @@ class ResourceRegistrar extends \Illuminate\Routing\ResourceRegistrar
             $parameters = $options['parameters'] ?? [];
             $nameArr = explode('/', $name);
             $resource = end($nameArr);
-            $resourceName = empty($parameters[$resource]) ? $resource : $parameters[$resource];
+            $resourceName = empty($parameters[$resource])
+                ? str_replace('-', '_', $resource) : $parameters[$resource];
             $routeSuffix = $itemConfig['route_suffix'] ?? '';
             $route = $name . '/' . str_replace('{resource}', '{'. $resourceName .'}', $routeSuffix);
 

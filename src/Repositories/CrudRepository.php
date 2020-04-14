@@ -39,7 +39,7 @@ abstract class CrudRepository extends Repository
      * @param bool $newInstance
      * @return Model|SoftDeletes
      */
-    abstract public function model($newInstance = false) : Model;
+    abstract public function model($newInstance = false);
 
     /**
      * 操作的数据含软删除数据

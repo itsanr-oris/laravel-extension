@@ -49,7 +49,7 @@ trait StatusOperation
     public function enable($ids, $enable = true)
     {
         if (!$this->hasStatusOperation()) {
-            throw new BusinessException('不支持状态变更操作!!');
+            throw new BusinessException('不支持状态变更操作!');
         }
 
         $ids = is_array($ids) ? $ids : (array) $ids;

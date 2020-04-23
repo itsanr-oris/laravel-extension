@@ -2,6 +2,7 @@
 
 namespace Foris\LaExtension\Traits\Repositories;
 
+use Foris\LaExtension\Exceptions\BusinessException;
 use Illuminate\Database\Eloquent\Model;
 use Foris\LaExtension\Traits\Models\SelectOption as ModelSelectOption;
 
@@ -40,9 +41,14 @@ trait SelectOption
      * 获取资源选项信息
      *
      * @return mixed
+     * @throws BusinessException
      */
     public function selectOptions()
     {
+        if (!$this->hasSelectOptionOperation()) {
+            throw new BusinessException('不支持选项信息操作操作!');
+        }
+
         return $this->query()->select($this->model()->getSelectOptionKeys())->get();
     }
 }

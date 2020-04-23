@@ -116,7 +116,7 @@ trait ResourceOperation
      */
     public function destroy($id)
     {
-        return $this->service()->delete($id) ? Response::success([]) : Response::failure();
+        return $this->service()->delete($id) ? Response::success([]) : Response::failure('操作失败，请稍后重新尝试!');
     }
 
     /**
@@ -128,6 +128,6 @@ trait ResourceOperation
     public function batchDestroy()
     {
         $ids = request()->input('ids', []);
-        return $this->service()->batchDelete($ids) ? Response::success([]) : Response::failure();
+        return $this->service()->batchDelete($ids) ? Response::success([]) : Response::failure('操作失败，请稍后重新尝试!');
     }
 }

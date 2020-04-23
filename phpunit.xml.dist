@@ -19,7 +19,7 @@
             <exclude>
                 <directory>src/config/</directory>
                 <!--<directory suffix="ServiceProvider.php">src/</directory>-->
-                <directory suffix="ExtResponse.php">src/</directory>
+                <!--<directory suffix="ExtResponse.php">src/</directory>-->
                 <directory suffix="TestCase.php">src/</directory>
             </exclude>
         </whitelist>

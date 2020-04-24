@@ -2,7 +2,6 @@
 
 namespace Foris\LaExtension\Tests;
 
-use Foris\LaExtension\Component;
 use Foris\LaExtension\ServiceProvider;
 use Foris\LaExtension\Tests\Stubs\Models\Resource;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -34,7 +33,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     {
         if (empty($this->vfs)) {
             $base = vfsStream::setup('laravel');
-            $this->vfs = vfsStream::copyFromFileSystem(parent::getBasePath(), $base);
+            $this->vfs = vfsStream::copyFromFileSystem(__DIR__ . '/Stubs/laravel', $base);
 
             $componentStub = __DIR__ . '/Stubs/Components/AutoRegisterComponent.stub';
             $facadeStub = __DIR__ . '/Stubs/Components/Facade/AutoRegisterComponent.stub';
@@ -62,7 +61,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
             require_once $this->vfs->url() . '/app/Components/Module/Facade/AutoRegisterComponent.php';
             require_once $this->vfs->url() . '/app/Http/Controllers/Controller.php';
         }
-dd(Component::scanFiles($this->vfs->url()));
+
         return $this->vfs;
     }
 

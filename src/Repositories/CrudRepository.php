@@ -30,7 +30,7 @@ abstract class CrudRepository extends Repository
      */
     public function __construct()
     {
-        $this->checkSoftDelete();
+        $this->checkSoftDelete(config('app-ext.check_model_soft_delete', false));
     }
 
     /**
@@ -46,12 +46,12 @@ abstract class CrudRepository extends Repository
      *
      * @param bool $withTrashed
      * @return $this
-     * @throws \Exception
+     * @throws ErrorException
      */
     public function withTrashed($withTrashed = true)
     {
         if (!$this->modelCanSoftDelete()) {
-            throw new ErrorException(sprintf('Model[%s]不支持软删除操作!', get_class($this->model())));
+            throw new ErrorException(sprintf('Model[%s] does not support soft-delete!', get_class($this->model())));
         }
 
         $this->withTrashed = $withTrashed;
@@ -66,7 +66,7 @@ abstract class CrudRepository extends Repository
      */
     public function checkSoftDelete($check = true)
     {
-        $this->checkSoftDelete = config('app-ext.check_model_soft_delete') && $check;
+        $this->checkSoftDelete = $check;
         return $this;
     }
 
@@ -174,7 +174,7 @@ abstract class CrudRepository extends Repository
     public function delete($id)
     {
         if ($this->checkSoftDelete && !$this->modelCanSoftDelete()) {
-            throw new ErrorException(sprintf('Model[%s]不支持软删除操作!', get_class($this->model())));
+            throw new ErrorException(sprintf('Model[%s] does not support soft-delete!', get_class($this->model())));
         }
 
         return $this->query()->where($this->model()->getKeyName(), $id)->delete();
@@ -185,12 +185,12 @@ abstract class CrudRepository extends Repository
      *
      * @param       $id
      * @param array $data
-     * @return int
+     * @return \Illuminate\Database\Eloquent\Builder|Model|null|object
      */
     public function update($id, array $data)
     {
         $model = $this->query()->where($this->model()->getKeyName(), $id)->first();
-        return $model ? $model->fill($data)->save() : 0;
+        return empty($model) ? null : ($model->fill($data)->save() ? $model : null);
     }
 
     /**

@@ -32,7 +32,7 @@ class BaseException extends \Exception
         Throwable $previous = null,
         $data = []
     ) {
-        $this->data = $data;
+        $this->setData($data);
         parent::__construct($message, $code, $previous);
     }
 

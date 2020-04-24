@@ -51,7 +51,7 @@ trait StatusOperation
     public function batchEnable()
     {
         $ids = request()->input('ids', []);
-        return $this->service()->enable($ids) ? Response::success([]) : Response::failure();
+        return $this->service()->enable($ids) ? Response::success([]) : Response::failure('操作失败，请稍后重新尝试!');
     }
 
     /**
@@ -63,6 +63,6 @@ trait StatusOperation
     public function batchDisable()
     {
         $ids = request()->input('ids', []);
-        return $this->service()->enable($ids, false) ? Response::success([]) : Response::failure();
+        return $this->service()->enable($ids, false) ? Response::success([]) : Response::failure('操作失败，请稍后重新尝试!');
     }
 }

@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUndefinedFieldInspection */
 
 namespace Foris\LaExtension\Traits\Models;
 

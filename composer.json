@@ -10,12 +10,25 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=7.1.0",
         "laravel/framework": "^5.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.1",
+        "mockery/mockery": "^1.2",
+        "fzaninotto/faker": "^1.8",
+        "orchestra/testbench": "^3.5",
+        "mikey179/vfsstream": "^1.6",
+        "timacdonald/log-fake": "^1.6"
     },
     "autoload": {
         "psr-4": {
             "Foris\\LaExtension\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Foris\\LaExtension\\Tests\\": "tests"
         }
     },
     "suggest": {
@@ -31,5 +44,8 @@
                 "LaExtensionResponse": "Foris\\LaExtension\\Http\\Facade\\Response"
             }
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
     }
 }

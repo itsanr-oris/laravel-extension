@@ -166,9 +166,9 @@ class Response
     public function data()
     {
         return [
-            'code' => $this->code,
-            'message' => $this->message,
-            'data' => $this->data,
+            'code' => $this->getCode(),
+            'message' => $this->getMessage(),
+            'data' => $this->getData(),
         ];
     }
 
@@ -180,7 +180,7 @@ class Response
      */
     public function toLaResponse($options = [])
     {
-        $options = array_merge($this->options, $options);
+        $options = array_merge($this->getOptions(), $options);
         $format = $options['format'] ?? self::FORMAT_JSON;
 
         $method = sprintf('to%sResponse', Str::ucfirst(Str::camel($format)));

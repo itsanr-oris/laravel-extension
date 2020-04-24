@@ -69,7 +69,8 @@ class MakeController extends ControllerMakeCommand
      */
     protected function buildClass($name)
     {
-        if ($this->option('resource')) {
+        if ($this->option('resource')
+            && $this->option('service')) {
             return $this->replaceServiceName(parent::buildClass($name));
         }
         return parent::buildClass($name);
@@ -80,7 +81,6 @@ class MakeController extends ControllerMakeCommand
      *
      * @param      string $stub The stub
      * @return     string
-     * @throws InvalidArgumentException
      */
     protected function replaceServiceName($stub)
     {
@@ -89,9 +89,10 @@ class MakeController extends ControllerMakeCommand
             $classNameArr  = explode('\\', $fullClassName);
 
             $stub = str_replace('NamespacedDummyService', $fullClassName, $stub);
-            return str_replace('DummyService', end($classNameArr), $stub);
+            $stub = str_replace('DummyService', end($classNameArr), $stub);
         }
-        throw new InvalidArgumentException("请传入 service 参数");
+
+        return $stub;
     }
 
     /**

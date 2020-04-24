@@ -34,14 +34,14 @@ trait ComponentRegister
         $classSegment = explode('\\', static::class);
         $folderSegment =  Arr::except($classSegment, [0, 1, count($classSegment) - 1]);
 
-        $nameSegment= [];
+        $nameSegment = [];
         foreach ($folderSegment as $folderName) {
             $nameSegment[] = static::segment($folderName);
         }
 
         $nameSegment[] = static::segment(end($classSegment), true);
 
-        return config('app-ext.component.name_prefix') . strtolower(implode('.', $nameSegment));
+        return config('app-ext.component.name_prefix') . '.' . strtolower(implode('.', $nameSegment));
     }
 
     /**

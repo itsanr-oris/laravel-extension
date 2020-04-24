@@ -1,0 +1,13 @@
+<?php
+
+namespace App\Components\Module;
+
+use Foris\LaExtension\Traits\ComponentRegister;
+
+/**
+ * Class Component
+ */
+class AutoRegisterComponent
+{
+    use ComponentRegister;
+}

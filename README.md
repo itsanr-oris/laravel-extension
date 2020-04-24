@@ -1,5 +1,7 @@
 # Laravel extension
 
+[![Build Status](https://travis-ci.com/itsanr-oris/bytedance-miniapp.svg?branch=master)](https://travis-ci.com/itsanr-oris/bytedance-miniapp)
+[![codecov](https://codecov.io/gh/itsanr-oris/bytedance-miniapp/branch/master/graph/badge.svg)](https://codecov.io/gh/itsanr-oris/bytedance-miniapp)
 [![Latest Stable Version](https://poser.pugx.org/f-oris/laravel-extension/v/stable)](https://packagist.org/packages/f-oris/laravel-extension)
 [![Latest Unstable Version](https://poser.pugx.org/f-oris/laravel-extension/v/unstable)](https://packagist.org/packages/f-oris/laravel-extension)
 [![Total Downloads](https://poser.pugx.org/f-oris/laravel-extension/downloads)](https://packagist.org/packages/f-oris/laravel-extension)

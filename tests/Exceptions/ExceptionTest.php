@@ -1,6 +1,6 @@
 <?php
 
-namespace Foris\LaExtension\Tests;
+namespace Foris\LaExtension\Tests\Exceptions;
 
 use Foris\LaExtension\Exceptions\AuthenticationException;
 use Foris\LaExtension\Exceptions\BaseException;
@@ -9,6 +9,7 @@ use Foris\LaExtension\Exceptions\Handler;
 use Foris\LaExtension\Exceptions\NotFoundHttpException;
 use Foris\LaExtension\Exceptions\ParamsValidateException;
 use Foris\LaExtension\Exceptions\PermissionForbiddenException;
+use Foris\LaExtension\Tests\TestCase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response as FoundationResponse;

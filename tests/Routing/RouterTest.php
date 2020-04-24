@@ -1,7 +1,8 @@
 <?php
 
-namespace Foris\LaExtension\Tests;
+namespace Foris\LaExtension\Tests\Routing;
 
+use Foris\LaExtension\Tests\TestCase;
 use Illuminate\Support\Arr;
 
 /**

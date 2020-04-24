@@ -1,10 +1,11 @@
 <?php
 
-namespace Foris\LaExtension\Tests;
+namespace Foris\LaExtension\Tests\Repositories;
 
 use Foris\LaExtension\Exceptions\ErrorException;
 use Foris\LaExtension\Repositories\CrudRepository;
 use Foris\LaExtension\Tests\Stubs\Models\Resource;
+use Foris\LaExtension\Tests\TestCase;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;

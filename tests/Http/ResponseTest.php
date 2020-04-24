@@ -1,8 +1,9 @@
 <?php
 
-namespace Foris\LaExtension\Tests;
+namespace Foris\LaExtension\Tests\Http;
 
 use Foris\LaExtension\Http\Response;
+use Foris\LaExtension\Tests\TestCase;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response as FoundationResponse;
 

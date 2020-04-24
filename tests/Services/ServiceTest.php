@@ -1,9 +1,10 @@
 <?php
 
-namespace Foris\LaExtension\Tests;
+namespace Foris\LaExtension\Tests\Services;
 
 use Foris\LaExtension\Tests\Stubs\Models\Resource;
 use Foris\LaExtension\Tests\Stubs\Services\ResourceService;
+use Foris\LaExtension\Tests\TestCase;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Pagination\Paginator;
 

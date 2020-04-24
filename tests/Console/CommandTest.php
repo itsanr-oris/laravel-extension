@@ -1,11 +1,12 @@
 <?php /** @noinspection PhpIncludeInspection */
 
-namespace Foris\LaExtension\Tests;
+namespace Foris\LaExtension\Tests\Console;
 
 use Foris\LaExtension\Repositories\CrudRepository;
 use Foris\LaExtension\Repositories\Repository;
 use Foris\LaExtension\Services\CrudService;
 use Foris\LaExtension\Services\Service;
+use Foris\LaExtension\Tests\TestCase;
 use Foris\LaExtension\Traits\Controllers\ExtResponse;
 use Foris\LaExtension\Traits\Controllers\ResourceOperation;
 use Illuminate\Support\Facades\Facade;

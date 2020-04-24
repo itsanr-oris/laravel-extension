@@ -7,7 +7,7 @@ branches:
   except:
   #  - develop
   #  - master
-  - /^feature.*$/
+  # - /^feature.*$/
 
 install:
 - composer install

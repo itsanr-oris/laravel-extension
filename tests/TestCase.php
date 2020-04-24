@@ -2,6 +2,7 @@
 
 namespace Foris\LaExtension\Tests;
 
+use Foris\LaExtension\Component;
 use Foris\LaExtension\ServiceProvider;
 use Foris\LaExtension\Tests\Stubs\Models\Resource;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -61,7 +62,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
             require_once $this->vfs->url() . '/app/Components/Module/Facade/AutoRegisterComponent.php';
             require_once $this->vfs->url() . '/app/Http/Controllers/Controller.php';
         }
-
+dd(Component::scanFiles($this->vfs->url()));
         return $this->vfs;
     }
 
@@ -137,9 +138,6 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function setUp(): void
     {
-        // 初始化虚拟文件系统
-        $this->initVfs();
-
         parent::setUp();
 
         $this->loadMigrationsFrom(realpath(__DIR__ . '/Stubs/migrations'));

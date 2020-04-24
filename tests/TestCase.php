@@ -62,7 +62,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
             require_once $this->vfs->url() . '/app/Components/Module/Facade/AutoRegisterComponent.php';
             require_once $this->vfs->url() . '/app/Http/Controllers/Controller.php';
         }
-dd(Component::scanFiles($this->vfs()->url()));
+
         return $this->vfs;
     }
 

@@ -137,7 +137,11 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function setUp(): void
     {
+        // 初始化虚拟文件系统
+        $this->initVfs();
+
         parent::setUp();
+
         $this->loadMigrationsFrom(realpath(__DIR__ . '/Stubs/migrations'));
         Resource::query()->create(['name' => 'resource a', 'desc' => 'resource a desc']);
         Resource::query()->create(['name' => 'resource b', 'desc' => 'resource b desc']);

@@ -183,4 +183,19 @@ return [
      * 是否自动加载model字段翻译功能
      */
     'initialize_model_column_translate' => true,
+
+    /**
+     * 缓存配置
+     */
+    'cache' => [
+        /**
+         * 是否启用缓存
+         */
+        'enable' => false,
+
+        /**
+         * 缓存时间
+         */
+        'ttl' => 3600,
+    ]
 ];

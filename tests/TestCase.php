@@ -2,7 +2,6 @@
 
 namespace Foris\LaExtension\Tests;
 
-use Foris\LaExtension\Component;
 use Foris\LaExtension\ServiceProvider;
 use Foris\LaExtension\Tests\Stubs\Models\Resource;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

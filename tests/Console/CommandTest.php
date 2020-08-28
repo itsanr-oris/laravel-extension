@@ -2,6 +2,7 @@
 
 namespace Foris\LaExtension\Tests\Console;
 
+use Foris\LaExtension\Repositories\CacheProxy;
 use Foris\LaExtension\Repositories\CrudRepository;
 use Foris\LaExtension\Repositories\Repository;
 use Foris\LaExtension\Services\CrudService;
@@ -37,7 +38,13 @@ class CommandTest extends TestCase
         $this->assertInstanceOf(Facade::class, new $facade());
 
         call_user_func([$class, 'register']);
-        $this->assertInstanceOf($class, call_user_func([$facade, 'getFacadeRoot']));
+
+        $instance = call_user_func([$facade, 'getFacadeRoot']);
+        if ($instance instanceof CacheProxy) {
+            $this->assertInstanceOf($class, $instance->repository());
+        } else {
+            $this->assertInstanceOf($class, $instance);
+        }
     }
 
     /**

@@ -19,7 +19,8 @@ abstract class Repository
     public static function register()
     {
         app()->bind(static::name(), function () {
-            return in_array(env('APP_ENV'), ['local', 'develop']) ? new static() : new CacheProxy(new static());
+            $disableCacheEnv = config('app-ext.cache.disable_cache_env', ['develop']);
+            return in_array(env('APP_ENV'), $disableCacheEnv) ? new static() : new CacheProxy(new static());
         });
     }
 }

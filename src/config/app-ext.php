@@ -197,5 +197,10 @@ return [
          * 缓存时间
          */
         'ttl' => 3600,
+
+        /**
+         * 不启用缓存的环境
+         */
+        'disable_cache_env' => ['local', 'develop']
     ]
 ];

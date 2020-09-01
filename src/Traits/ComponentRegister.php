@@ -41,7 +41,8 @@ trait ComponentRegister
 
         $nameSegment[] = static::segment(end($classSegment), true);
 
-        return config('app-ext.component.name_prefix') . '.' . strtolower(implode('.', $nameSegment));
+        $prefix = config('app-ext.component.name_prefix', '');
+        return empty($prefix) ? strtolower(implode('.', $nameSegment)) : $prefix . '.' . strtolower(implode('.', $nameSegment));
     }
 
     /**

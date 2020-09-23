@@ -13,9 +13,10 @@
 
 ## 运行环境
 
- - PHP >= 7.1.0
- - Laravel >= 5.5.0
- - 推荐开发环境下安装[barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)，结合service/repository组件facade进行业务编码
+| version | php | laravel |
+| :----: | :----: | :---: |
+| 1.x | >=7.1 | 5.5 ~ 6.* |
+| 2.x | >=7.3 | 7.* ~ 8.* |
 
 ## 安装
 

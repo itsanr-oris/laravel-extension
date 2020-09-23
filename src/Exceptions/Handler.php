@@ -2,7 +2,7 @@
 
 namespace Foris\LaExtension\Exceptions;
 
-use Exception;
+use Throwable;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Foundation\Exceptions\Handler as BaseExceptionHandler;
@@ -33,10 +33,11 @@ class Handler extends BaseExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param Exception $exception
+     * @param Throwable $exception
      * @return mixed|void
+     * @throws Throwable
      */
-    public function report(Exception $exception)
+    public function report(Throwable $exception)
     {
         if ($exception instanceof BaseException) {
             $exception->report();
@@ -50,10 +51,10 @@ class Handler extends BaseExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param Exception                $exception
+     * @param Throwable                $exception
      * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $exception)
     {
         if ($exception instanceof BaseException) {
             return $exception->render();

@@ -53,13 +53,14 @@ class ExceptionTest extends TestCase
         $this->assertEquals('value', $data['data']['key']);
 
         // 转换到非调试模式
-        putenv('APP_DEBUG=false');
+        $_ENV['APP_DEBUG'] = false;
         $this->assertFalse(env('APP_DEBUG', false));
         $response = $this->makeBaseException()->render();
 
         $data = $response->getData(true);
         $this->assertEquals('系统正在开小差，请稍后重新尝试哦~', $data['message']);
         $this->assertArrayNotHasKey('exception', $data['data']);
+        $_ENV['APP_DEBUG'] = true;
     }
 
     /**
@@ -68,7 +69,7 @@ class ExceptionTest extends TestCase
     public function testBaseExceptionReport()
     {
         // 关闭调试模式，让getData获取到原始数据
-        putenv('APP_DEBUG=false');
+        $_ENV['APP_DEBUG'] = false;
 
         $exception = $this->makeBaseException();
         $exception->report();
@@ -92,6 +93,8 @@ class ExceptionTest extends TestCase
 
             return true;
         });
+
+        $_ENV['APP_DEBUG'] = true;
     }
 
     /**

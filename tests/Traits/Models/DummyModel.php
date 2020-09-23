@@ -23,6 +23,13 @@ class DummyModel extends Model implements StatusDefinition
     protected $guarded = ['id'];
 
     /**
+     * 允许批量填充字段，6.x版本之后，如果fill的字段不属于model对应的table字段，需要手动指定才能填充。
+     *
+     * @var array
+     */
+    protected $fillable = ['status', 'attr_a', 'attr_b', 'column_translates'];
+
+    /**
      * attribute a translate
      *
      * @return string

@@ -7,6 +7,11 @@ return [
     'handle_exception' => true,
 
     /**
+     * 是否展示原始异常信息
+     */
+    'show_raw_exception_message' => false,
+
+    /**
      * 是否检查数据模型软删除启用情况
      */
     'check_model_soft_delete' => false,
@@ -179,4 +184,24 @@ return [
      * 是否自动加载model字段翻译功能
      */
     'initialize_model_column_translate' => true,
+
+    /**
+     * 缓存配置
+     */
+    'cache' => [
+        /**
+         * 是否启用缓存
+         */
+        'enable' => false,
+
+        /**
+         * 缓存时间
+         */
+        'ttl' => 3600,
+
+        /**
+         * 不启用缓存的环境
+         */
+        'disable_cache_env' => ['local', 'develop']
+    ]
 ];

@@ -7,6 +7,11 @@ return [
     'handle_exception' => true,
 
     /**
+     * 是否展示原始异常信息
+     */
+    'show_raw_exception_message' => false,
+
+    /**
      * 是否检查数据模型软删除启用情况
      */
     'check_model_soft_delete' => false,

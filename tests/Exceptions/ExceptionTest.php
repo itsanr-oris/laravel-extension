@@ -33,12 +33,26 @@ class ExceptionTest extends TestCase
     }
 
     /**
+     * 是否展示异常信息
+     *
+     * @param bool $show
+     */
+    protected function showRawExceptionMessage($show = true)
+    {
+        if ($show) {
+            $this->getConfig()->set('app-ext.show_raw_exception_message', true);
+        } else {
+            $this->getConfig()->set('app-ext.show_raw_exception_message', false);
+        }
+    }
+
+    /**
      * 测试异常响应功能
      */
     public function testBaseExceptionRender()
     {
-        // 调试模式下
-        $this->assertTrue(env('APP_DEBUG', false));
+        // 非调试模式下
+        $this->showRawExceptionMessage();
         $response = $this->makeBaseException()->render();
 
         $this->assertInstanceOf(JsonResponse::class, $response);
@@ -53,14 +67,12 @@ class ExceptionTest extends TestCase
         $this->assertEquals('value', $data['data']['key']);
 
         // 转换到非调试模式
-        $_ENV['APP_DEBUG'] = false;
-        $this->assertFalse(env('APP_DEBUG', false));
+        $this->showRawExceptionMessage(false);
         $response = $this->makeBaseException()->render();
 
         $data = $response->getData(true);
         $this->assertEquals('系统正在开小差，请稍后重新尝试哦~', $data['message']);
         $this->assertArrayNotHasKey('exception', $data['data']);
-        $_ENV['APP_DEBUG'] = true;
     }
 
     /**
@@ -68,9 +80,6 @@ class ExceptionTest extends TestCase
      */
     public function testBaseExceptionReport()
     {
-        // 关闭调试模式，让getData获取到原始数据
-        $_ENV['APP_DEBUG'] = false;
-
         $exception = $this->makeBaseException();
         $exception->report();
 
@@ -93,8 +102,6 @@ class ExceptionTest extends TestCase
 
             return true;
         });
-
-        $_ENV['APP_DEBUG'] = true;
     }
 
     /**
@@ -102,6 +109,8 @@ class ExceptionTest extends TestCase
      */
     public function testAuthenticationException()
     {
+        $this->showRawExceptionMessage();
+
         $response = (new AuthenticationException('authentication exception'))->render();
         $data = $response->getData(true);
         $code = config('app-ext.api_response_code.unauthorized', FoundationResponse::HTTP_UNAUTHORIZED);
@@ -138,6 +147,8 @@ class ExceptionTest extends TestCase
      */
     public function testNotFoundHttpException()
     {
+        $this->showRawExceptionMessage();
+
         $response = (new NotFoundHttpException('not found exception'))->render();
         $data = $response->getData(true);
         $code = config('app-ext.api_response_code.notFound', FoundationResponse::HTTP_NOT_FOUND);
@@ -163,6 +174,8 @@ class ExceptionTest extends TestCase
 
     public function testPermissionForbiddenException()
     {
+        $this->showRawExceptionMessage();
+
         $response = (new PermissionForbiddenException('permission forbidden exception'))->render();
         $data = $response->getData(true);
         $code = config('app-ext.api_response_code.forbidden', FoundationResponse::HTTP_FORBIDDEN);

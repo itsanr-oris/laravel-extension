@@ -55,7 +55,7 @@ class BaseException extends \Exception
      */
     public function getData()
     {
-        if (env('APP_DEBUG') == true) {
+        if (config('app-ext.show_raw_exception_message', false)) {
             $data = [
                 'code' => $this->getCode(),
                 'message' => $this->getMessage(),
@@ -103,7 +103,7 @@ class BaseException extends \Exception
     {
         $code = empty($this->getCode()) ? $this->getDefaultResponseCode() : $this->getCode();
         $method = $this->getDefaultResponseMethod();
-        $message = env('APP_DEBUG', false) ? $this->getMessage() : '系统正在开小差，请稍后重新尝试哦~';
+        $message = config('app-ext.show_raw_exception_message', false) ? $this->getMessage() : '系统正在开小差，请稍后重新尝试哦~';
 
         return Response::$method($message, $this->getData(), $code);
     }
